@@ -5,11 +5,19 @@
  */
 package project;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Logger;
+
 /**
  *
  * @author user
  */
 public class Ventana extends javax.swing.JFrame {
+
+    Procesador miProcesador = new Procesador();
 
     /**
      * Creates new form Ventana
@@ -84,14 +92,39 @@ public class Ventana extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    void borrar(){
+        splat.setText("");
+        splon.setText("");
+    }
     private void btnacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnacMouseClicked
         // TODO add your handling code here:
+        miProcesador.setLatitud(splat.getText());
+        miProcesador.setLongitud(splon.getText());
+        borrar();
     }//GEN-LAST:event_btnacMouseClicked
-
+    
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        Connection conexion;
+
+        String url = "jdbc:mysql://localhost:3306/javadb";
+        String usuario = "root";
+        String clave = "";
+
+        try {
+            conexion = DriverManager.getConnection(url, usuario, clave);
+            System.out.println("POR FIN!");
+            
+            //1. Crear un objeto
+            Statement sentencia;
+            sentencia = conexion.createStatement();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
+        }
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

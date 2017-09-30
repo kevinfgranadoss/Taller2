@@ -17,8 +17,8 @@ import java.util.logging.Logger;
  */
 public class Ventana extends javax.swing.JFrame {
 
+  
     Procesador miProcesador = new Procesador();
-
     /**
      * Creates new form Ventana
      */
@@ -92,38 +92,35 @@ public class Ventana extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    void borrar(){
+    void borrar() {
         splat.setText("");
         splon.setText("");
     }
     private void btnacMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnacMouseClicked
         // TODO add your handling code here:
-        miProcesador.setLatitud(splat.getText());
-        miProcesador.setLongitud(splon.getText());
+        String lat=(miProcesador.La(splat));
+        String lon=(miProcesador.Lo(splon));
         borrar();
     }//GEN-LAST:event_btnacMouseClicked
-    
-    
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         Connection conexion;
-
-        String url = "jdbc:mysql://localhost:3306/javadb";
+        String url = "jdbc:mysql://localhost:3306/registros";
         String usuario = "root";
         String clave = "";
 
         try {
             conexion = DriverManager.getConnection(url, usuario, clave);
             System.out.println("POR FIN!");
-            
-            //1. Crear un objeto
+            String cadena = "INSERT INTO reg(lati,longi) VALUES ("+lat+lon+")";
             Statement sentencia;
             sentencia = conexion.createStatement();
-
+            sentencia.execute(cadena);
         } catch (SQLException ex) {
-            Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
+
         }
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -163,4 +160,5 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JTextField splat;
     private javax.swing.JTextField splon;
     // End of variables declaration//GEN-END:variables
+
 }

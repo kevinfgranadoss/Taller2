@@ -5,15 +5,20 @@
  */
 package project;
 
-public class Procesador {
-    String latitud;
-    String longitud;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-    public void setLatitud(String latitud) {
-        this.latitud = latitud;
+public class Procesador{
+    String lat1;
+    String lon1;
+    String La(javax.swing.JTextField splat){
+        lat1=splat.getText();
+        return lat1;
     }
-
-    public void setLongitud(String longitud) {
-        this.longitud = longitud;
+    String Lo(javax.swing.JTextField splon){
+        lon1=splon.getText();
+        return lon1;
     }
 }

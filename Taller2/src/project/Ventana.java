@@ -115,10 +115,10 @@ public class Ventana extends javax.swing.JFrame {
         try {
             conexion = DriverManager.getConnection(url, usuario, clave);
             System.out.println("POR FIN!");
-            String cadena = "INSERT INTO reg(lati,longi) VALUES ("+lat+lon+")";
+            //String cadena = "INSERT INTO reg(lati,longi) VALUES ("+lat+lon+")";
             Statement sentencia;
             sentencia = conexion.createStatement();
-            sentencia.execute(cadena);
+            //sentencia.execute(cadena);
         } catch (SQLException ex) {
 
         }
